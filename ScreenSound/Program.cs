@@ -1,5 +1,18 @@
-﻿using ScreenSound.Menus;
+﻿
+using ScreenSound;
+using ScreenSound.Menus;
 using ScreenSound.Models;
+using OpenAI_API;
+//criar a chave no opeai
+var client = new OpenAIAPI("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");
+
+var chat = client.Chat.CreateConversation();
+
+chat.AppendSystemMessage("Resuma a banda Ira! em 1 parágrafo. Adote um estilo informal.");
+
+string resposta = await chat.GetResponseFromChatbotAsync();
+
+Console.WriteLine(resposta);
 
 Banda ira = new Banda("Ira!");
 ira.AdicionarNota(new Avaliacao(10));
@@ -17,7 +30,8 @@ opcoes.Add(1, new MenuRegistrarBanda());
 opcoes.Add(2, new MenuRegistrarAlbum());
 opcoes.Add(3, new MenuMostrarBandasRegistradas());
 opcoes.Add(4, new MenuAvaliarBanda());
-opcoes.Add(5, new MenuExibirDetalhes());
+opcoes.Add(5, new MenuAvaliarAlbum());
+opcoes.Add(6, new MenuExibirDetalhes());
 opcoes.Add(0, new MenuSair());
 
 
@@ -42,7 +56,8 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
     Console.WriteLine("Digite 3 para mostrar todas as bandas");
     Console.WriteLine("Digite 4 para avaliar uma banda");
-    Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
+    Console.WriteLine("Digite 5 para avaliar um álbum");
+    Console.WriteLine("Digite 6 para exibir os detalhes de uma banda");
     Console.WriteLine("Digite 0 para sair");
 
     Console.Write("\nDigite a sua opção: ");

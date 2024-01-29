@@ -2,7 +2,7 @@
 
 internal class Musica
 {
-    public Musica(Banda artista, string nome)
+   public Musica(Banda artista, string nome)
     {
         Artista = artista;
         Nome = nome;
